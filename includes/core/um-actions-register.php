@@ -310,8 +310,23 @@ function um_submit_form_register( $args ) {
 		// if full name exists
 		$count = 1;
 		while ( username_exists( $user_login ) ) {
-			$user_login .= $count;
-			$count++;
+			if( $count <= 2 ) {
+
+				$caunt_lengh = iconv_strlen( $count );
+				$last_num = substr( $user_login, -$caunt_lengh );
+
+				if( is_numeric( $last_num ) ) {
+					$user_login = substr( $user_login, 0, -$caunt_lengh);
+					$user_login .= $count;
+				} else {
+					$user_login .= $count;
+				}
+
+				$count++;
+			} else {
+				$user_login .= $count;
+				$count++;
+			}
 		}
 	}
 
