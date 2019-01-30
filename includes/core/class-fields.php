@@ -916,11 +916,11 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 						$data['default'] = explode( ', ', $data['default'] );
 					}
 
-					if ( isset( $data['default'] ) && ! is_array( $data['default'] ) && $data['default'] === $value ) {
+					if ( isset( $data['default'] ) && ! is_array( $data['default'] ) && $data['default'] === $value && empty( $field_value ) ) {
 						return true;
 					}
 
-					if ( isset( $data['default'] ) && is_array( $data['default'] ) && in_array( $value, $data['default'] )) {
+					if ( isset( $data['default'] ) && is_array( $data['default'] ) && in_array( $value, $data['default'] ) && empty( $field_value ) ) {
 						return true;
 					}
 
